@@ -1,0 +1,30 @@
+.DS_Store
+.vscode
+target
+node_modules
+Deploys/vpf.txt
+
+
+# IntelliJ project files
+#------------------------------------------------------------
+.idea
+*.iml
+out
+gen
+*.swp
+~$*
+
+# Eclipse IDE
+#------------------------------------------------------------
+**/.classpath
+**/.project
+**/.tern-project
+**/.settings/**
+
+# SVN
+**/.svn
+
+# Logs
+#------------------------------------------------------------
+log
+logs
