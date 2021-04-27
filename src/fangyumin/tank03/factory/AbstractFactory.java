@@ -1,6 +1,7 @@
 package fangyumin.tank03.factory;
 
 import fangyumin.tank03.TankFrame;
+import fangyumin.tank03.facade.GameModel;
 
 public abstract class AbstractFactory {
 
@@ -8,5 +9,5 @@ public abstract class AbstractFactory {
 
     abstract BaseBulletFactory createBullet();
 
-    abstract BaseExplode createExplode(int x, int y, TankFrame tankFrame);
+    abstract BaseExplode createExplode(int x, int y, GameModel gm);
 }

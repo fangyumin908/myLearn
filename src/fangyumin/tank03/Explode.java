@@ -1,5 +1,6 @@
 package fangyumin.tank03;
 
+import fangyumin.tank03.facade.GameModel;
 import fangyumin.tank03.factory.BaseExplode;
 
 import java.awt.*;
@@ -10,14 +11,14 @@ public class Explode extends BaseExplode {
     public final static int WIDTH = ResourceLoaderManager.EXPLODE[0].getWidth();
     public final static int HEIGHT = ResourceLoaderManager.EXPLODE[0].getHeight();
     private boolean live;
-    private TankFrame tankFrame;
+    private GameModel gm;
 
     private int step = 0;//记录画爆炸图片的位置
 
-    public Explode(int x, int y, TankFrame tankFrame) {
+    public Explode(int x, int y, GameModel gm) {
         this.x = x;
         this.y = y;
-        this.tankFrame = tankFrame;
+        this.gm = gm;
     }
 
     public void paint(Graphics g) {
@@ -29,6 +30,6 @@ public class Explode extends BaseExplode {
     }
 
     public void remove() {
-        tankFrame.explodes.remove(this);
+        gm.getExplodes().remove(this);
     }
 }

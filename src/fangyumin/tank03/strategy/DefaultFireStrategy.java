@@ -33,8 +33,8 @@ public class DefaultFireStrategy implements FireStrategy {
         int bulletX = tank.getX() + Tank.WIDTH / 2 - Bullet.WIDTH / 2;
         int bulletY = tank.getY() + Tank.HEIGHT / 2 - Bullet.HEIGHT / 2;
         //通过持有tankFrame的引用来画子弹
-        tank.getTankFrame().getBullets().add(new Bullet(bulletX, bulletY, tank.getDirection(),
-                tank.getGroup(), tank.getTankFrame()));
+        tank.getGm().getBullets().add(new Bullet(bulletX, bulletY, tank.getDirection(),
+                tank.getGroup(), tank.getGm()));
     }
 
 

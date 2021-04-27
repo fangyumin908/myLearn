@@ -1,5 +1,6 @@
 package fangyumin.tank03;
 
+import fangyumin.tank03.facade.GameModel;
 import fangyumin.tank03.factory.BaseExplode;
 
 import java.awt.*;
@@ -9,12 +10,12 @@ public class RectExplode extends BaseExplode {
     private int x, y;
 
     private int step = 0;//记录画爆炸图片的位置
-    private TankFrame tankFrame;
+    private GameModel gm;
 
-    public RectExplode(int x, int y, TankFrame tankFrame) {
+    public RectExplode(int x, int y, GameModel gm) {
         this.x = x;
         this.y = y;
-        this.tankFrame = tankFrame;
+        this.gm = gm;
     }
 
     @Override
@@ -31,6 +32,6 @@ public class RectExplode extends BaseExplode {
     }
 
     public void remove() {
-        tankFrame.explodes.remove(this);
+        gm.getExplodes().remove(this);
     }
 }

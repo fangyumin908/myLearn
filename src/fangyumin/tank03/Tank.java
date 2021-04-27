@@ -1,5 +1,6 @@
 package fangyumin.tank03;
 
+import fangyumin.tank03.facade.GameModel;
 import fangyumin.tank03.strategy.FireStrategy;
 import fangyumin.tank03.utils.PropertiesLoaderUtil;
 
@@ -14,17 +15,17 @@ public class Tank {
     private boolean moving = true;
     private boolean live = true;
     private Random random = new Random();
-    private TankFrame tankFrame;
+    private GameModel gm;
     private GroupEnum group;
     public Rectangle rectangle = new Rectangle();
     public final static int WIDTH = ResourceLoaderManager.goodTankD.getWidth();
     public final static int HEIGHT = ResourceLoaderManager.goodTankD.getHeight();
-    public Tank(int x, int y, DirectionEnum direction, GroupEnum group, TankFrame tankFrame) {
+    public Tank(int x, int y, DirectionEnum direction, GroupEnum group, GameModel gm) {
         this.x = x;
         this.y = y;
         this.direction = direction;
         this.group = group;
-        this.tankFrame = tankFrame;
+        this.gm = gm;
 
         rectangle.x = this.x;
         rectangle.y = this.y;
@@ -65,7 +66,7 @@ public class Tank {
         }
 
         if (!live){
-            tankFrame.enemiesTank.remove(this);
+            gm.getEnemiesTank().remove(this);
         }
     }
 
@@ -116,6 +117,7 @@ public class Tank {
      * 边界检测，不让坦克走出界面
      */
     private void boundsCheck() {
+        TankFrame tankFrame = gm.getTankFrame();
         if (this.x < 2) this.x = 2;
         if (this.x + Tank.WIDTH > tankFrame.getWidth() - 2) this.x = tankFrame.getWidth() - Tank.WIDTH;
         if (this.y < 30) this.y = 30;
@@ -132,10 +134,11 @@ public class Tank {
     //未使用策略模式前，只有一种发射子弹模式
     //发射子弹
     public void fire() {
+        TankFrame tankFrame = gm.getTankFrame();
         int bulletX = this.x + Tank.WIDTH / 2 - Bullet.WIDTH / 2;
         int bulletY = this.y + Tank.HEIGHT / 2 - Bullet.HEIGHT / 2;
         //通过持有tankFrame的引用来画子弹
-        tankFrame.bullets.add(new Bullet(bulletX, bulletY, direction, this.group, this.tankFrame));
+        gm.getBullets().add(new Bullet(bulletX, bulletY, direction, this.group, gm));
     }
 
     public void die() {
@@ -182,11 +185,11 @@ public class Tank {
         this.group = group;
     }
 
-    public TankFrame getTankFrame() {
-        return tankFrame;
+    public GameModel getGm() {
+        return gm;
     }
 
-    public void setTankFrame(TankFrame tankFrame) {
-        this.tankFrame = tankFrame;
+    public void setGm(GameModel gm) {
+        this.gm = gm;
     }
 }

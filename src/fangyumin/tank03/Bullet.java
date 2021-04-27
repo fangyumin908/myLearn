@@ -1,6 +1,7 @@
 package fangyumin.tank03;
 
 
+import fangyumin.tank03.facade.GameModel;
 import fangyumin.tank03.factory.RectFactory;
 import fangyumin.tank03.utils.PropertiesLoaderUtil;
 
@@ -17,14 +18,14 @@ public class Bullet {
     private boolean live = true;//子弹是否存活
     public final static int WIDTH = ResourceLoaderManager.bulletD.getWidth();
     public final static int HEIGHT = ResourceLoaderManager.bulletD.getHeight();
-    private TankFrame tankFrame = null;
+    private GameModel gm = null;
     private GroupEnum group;
-    public Bullet(int x, int y, DirectionEnum direction, GroupEnum group, TankFrame tankFrame) {
+    public Bullet(int x, int y, DirectionEnum direction, GroupEnum group, GameModel gm) {
         this.x = x;
         this.y = y;
         this.direction = direction;
         this.group = group;
-        this.tankFrame = tankFrame;
+        this.gm = gm;
     }
 
     public void paint(Graphics g) {
@@ -47,7 +48,7 @@ public class Bullet {
 
         move();
         if (!live){
-            tankFrame.bullets.remove(this);
+            gm.getBullets().remove(this);
         }
 
     }
@@ -68,7 +69,7 @@ public class Bullet {
                 break;
             default:
         }
-        if (x < 0 || x > tankFrame.getWidth() || y < 0 || y > tankFrame.getHeight()){
+        if (x < 0 || x > gm.getTankFrame().getWidth() || y < 0 || y > gm.getTankFrame().getHeight()){
             live = false;
         }
     }
@@ -82,7 +83,7 @@ public class Bullet {
             int explodeX = enemyTank.getX() + Tank.WIDTH/2 - Explode.WIDTH/2;
             int explodeY = enemyTank.getY() + Tank.HEIGHT/2 - Explode.HEIGHT/2;
 //            tankFrame.explodes.add(new Explode(explodeX, explodeY,tankFrame));
-            tankFrame.explodes.add(RectFactory.getInstance().createExplode(explodeX,explodeY,tankFrame));
+            gm.getExplodes().add(RectFactory.getInstance().createExplode(explodeX,explodeY,gm));
             this.die();
             enemyTank.die();
         }
