@@ -1,6 +1,7 @@
 package fangyumin.tank03;
 
 import fangyumin.tank03.facade.GameModel;
+import fangyumin.tank03.strategy.DefaultFireStrategy;
 import fangyumin.tank03.strategy.FireStrategy;
 import fangyumin.tank03.utils.PropertiesLoaderUtil;
 
@@ -39,6 +40,7 @@ public class Tank extends GameObject{
 
     @Override
     public void paint(Graphics g) {
+        move(moving);
         //更新坦克图形坐标
         rectangle.x = this.x;
         rectangle.y = this.y;
@@ -65,16 +67,16 @@ public class Tank extends GameObject{
         }
 
         if (!live){
-            gm.getEnemiesTank().remove(this);
+            gm.getGameObjects().remove(this);
         }
     }
 
     public void paint(Graphics g, FireStrategy fireStrategy) {
-        move(moving, fireStrategy);
+        move(moving);
         this.paint(g);
     }
 
-    private void move(boolean moving, FireStrategy fireStrategy) {
+    private void move(boolean moving) {
         if(!moving) return;
         switch (direction){
             case UP:
@@ -109,7 +111,7 @@ public class Tank extends GameObject{
         }
 
         if (this.group.equals(GroupEnum.BAD) && this.random.nextDouble() > 0.98){
-            fireStrategy.fire(this);
+            DefaultFireStrategy.getInstance().fire(this);
             randomDirection();
         }
 
@@ -142,7 +144,7 @@ public class Tank extends GameObject{
         int bulletX = this.x + Tank.WIDTH / 2 - Bullet.WIDTH / 2;
         int bulletY = this.y + Tank.HEIGHT / 2 - Bullet.HEIGHT / 2;
         //通过持有tankFrame的引用来画子弹
-        gm.getBullets().add(new Bullet(bulletX, bulletY, direction, this.group, gm));
+        gm.getGameObjects().add(new Bullet(bulletX, bulletY, direction, this.group, gm));
     }
 
     public void die() {

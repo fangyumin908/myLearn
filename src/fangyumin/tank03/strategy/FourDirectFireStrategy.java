@@ -29,7 +29,7 @@ public class FourDirectFireStrategy implements FireStrategy {
         int bulletX = tank.getX() + Tank.WIDTH / 2 - Bullet.WIDTH / 2;
         int bulletY = tank.getY() + Tank.HEIGHT / 2 - Bullet.HEIGHT / 2;
         for (DirectionEnum dir : DirectionEnum.values()){
-            tank.getGm().getBullets().add(new Bullet(bulletX,bulletY,dir,tank.getGroup(),tank.getGm()));
+            tank.getGm().getGameObjects().add(new Bullet(bulletX,bulletY,dir,tank.getGroup(),tank.getGm()));
         }
     }
 }

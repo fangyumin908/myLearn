@@ -30,6 +30,6 @@ public class Explode extends BaseExplode {
     }
 
     public void remove() {
-        gm.getExplodes().remove(this);
+        gm.getGameObjects().remove(this);
     }
 }

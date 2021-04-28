@@ -48,7 +48,7 @@ public class Bullet extends GameObject{
 
         move();
         if (!live){
-            gm.getBullets().remove(this);
+            gm.getGameObjects().remove(this);
         }
 
     }
@@ -83,7 +83,7 @@ public class Bullet extends GameObject{
             int explodeX = enemyTank.getX() + Tank.WIDTH/2 - Explode.WIDTH/2;
             int explodeY = enemyTank.getY() + Tank.HEIGHT/2 - Explode.HEIGHT/2;
 //            tankFrame.explodes.add(new Explode(explodeX, explodeY,tankFrame));
-            gm.getExplodes().add(RectFactory.getInstance().createExplode(explodeX,explodeY,gm));
+            gm.getGameObjects().add(RectFactory.getInstance().createExplode(explodeX,explodeY,gm));
             this.die();
             enemyTank.die();
         }

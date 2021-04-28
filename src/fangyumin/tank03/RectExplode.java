@@ -32,6 +32,6 @@ public class RectExplode extends BaseExplode {
     }
 
     public void remove() {
-        gm.getExplodes().remove(this);
+        gm.getGameObjects().remove(this);
     }
 }
