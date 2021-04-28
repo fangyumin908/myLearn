@@ -7,7 +7,7 @@ import fangyumin.tank03.utils.PropertiesLoaderUtil;
 import java.awt.*;
 import java.util.Random;
 
-public class Tank {
+public class Tank extends GameObject{
     private int x,y;
     private DirectionEnum direction = DirectionEnum.DOWN;
     private int ENEMIES_SPEED = Integer.parseInt(PropertiesLoaderUtil.getValue("enemyTankSpeed"));;
@@ -37,9 +37,8 @@ public class Tank {
         }
     }
 
-    public void paint(Graphics g, FireStrategy fireStrategy) {
-        move(moving, fireStrategy);
-
+    @Override
+    public void paint(Graphics g) {
         //更新坦克图形坐标
         rectangle.x = this.x;
         rectangle.y = this.y;
@@ -68,6 +67,11 @@ public class Tank {
         if (!live){
             gm.getEnemiesTank().remove(this);
         }
+    }
+
+    public void paint(Graphics g, FireStrategy fireStrategy) {
+        move(moving, fireStrategy);
+        this.paint(g);
     }
 
     private void move(boolean moving, FireStrategy fireStrategy) {

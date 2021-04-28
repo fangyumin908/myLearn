@@ -10,7 +10,7 @@ import java.awt.*;
 /**
  * 子弹类
  */
-public class Bullet {
+public class Bullet extends GameObject{
 
     private int x,y;
     private DirectionEnum direction;
