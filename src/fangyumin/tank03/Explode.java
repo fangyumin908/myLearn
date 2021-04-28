@@ -32,4 +32,9 @@ public class Explode extends BaseExplode {
     public void remove() {
         gm.getGameObjects().remove(this);
     }
+
+    @Override
+    public void compareCollide(Object o1, Object o2) {
+
+    }
 }

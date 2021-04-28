@@ -2,6 +2,7 @@ package fangyumin.tank03.facade;
 
 import fangyumin.tank03.*;
 import fangyumin.tank03.strategy.FourDirectFireStrategy;
+import fangyumin.tank03.utils.BulletTankCollider;
 import fangyumin.tank03.utils.PropertiesLoaderUtil;
 
 import java.awt.*;
@@ -13,6 +14,9 @@ import java.util.Objects;
  * 门面模式，与TankFrame,Tank,Bullets等游戏类交互，避免它们之间直接交互
  */
 public class GameModel {
+
+    BulletTankCollider bulletTankCollider = new BulletTankCollider();
+
     Tank myTank = new Tank(200, 200, DirectionEnum.DOWN, GroupEnum.GOOD, this);
 
     //这里的不同类对象就可以统一写进一个List了
@@ -66,10 +70,21 @@ public class GameModel {
 //        g.drawString("爆炸数量 ： " + explodes.size(), 10 , 90);
         g.setColor(c);
 
+
+
 //        myTank.paint(g);
 //        explode.paint(g);
         for (int i = 0; i < gameObjects.size();i++){
             gameObjects.get(i).paint(g);
+        }
+
+        //新碰撞检测
+        for (int i = 0; i <= gameObjects.size(); i++) {
+            for (int j = i + 1; j < gameObjects.size(); j++) {
+                Object front =  gameObjects.get(i);
+                Object rear = gameObjects.get(j);
+                bulletTankCollider.compareCollide(front, rear);
+            }
         }
 
         //碰撞检测旧写法
@@ -84,13 +99,13 @@ public class GameModel {
 //        collideCheck(bullets, enemiesTank);
     }
 
-    private void collideCheck(List<Bullet> bullets, List<Tank> enemiesTank) {
-        for (int i = 0; i < bullets.size(); i++){
-            for (int j = 0;j < enemiesTank.size(); j++){
-                bullets.get(i).collideCheck(enemiesTank.get(j));
-            }
-        }
-    }
+//    private void collideCheck(List<Bullet> bullets, List<Tank> enemiesTank) {
+//        for (int i = 0; i < bullets.size(); i++){
+//            for (int j = 0;j < enemiesTank.size(); j++){
+//                bullets.get(i).collideCheck(enemiesTank.get(j));
+//            }
+//        }
+//    }
 
     public void setTankDirection(boolean BL,boolean BR,boolean BU,boolean BD) {
 

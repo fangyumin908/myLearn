@@ -147,6 +147,11 @@ public class Tank extends GameObject{
         gm.getGameObjects().add(new Bullet(bulletX, bulletY, direction, this.group, gm));
     }
 
+    @Override
+    public void compareCollide(Object o1, Object o2) {
+
+    }
+
     public void die() {
         this.live = false;
     }

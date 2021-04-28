@@ -74,22 +74,28 @@ public class Bullet extends GameObject{
         }
     }
 
-    public void collideCheck(Tank enemyTank) {
-        if (this.group == enemyTank.getGroup()) return;
+    //旧的子弹与坦克碰撞逻辑，抽取到各自的碰撞实现类中
+//    public void collideCheck(Tank enemyTank) {
+//        if (this.group == enemyTank.getGroup()) return;
+//
+//        Rectangle r1 = new Rectangle(this.x, this.y, WIDTH, HEIGHT);
+//        Rectangle r2 = new Rectangle(enemyTank.getX(), enemyTank.getY(), Tank.WIDTH, Tank.HEIGHT);
+//        if (r1.intersects(r2)){
+//            int explodeX = enemyTank.getX() + Tank.WIDTH/2 - Explode.WIDTH/2;
+//            int explodeY = enemyTank.getY() + Tank.HEIGHT/2 - Explode.HEIGHT/2;
+////            tankFrame.explodes.add(new Explode(explodeX, explodeY,tankFrame));
+//            gm.getGameObjects().add(RectFactory.getInstance().createExplode(explodeX,explodeY,gm));
+//            this.die();
+//            enemyTank.die();
+//        }
+//    }
 
-        Rectangle r1 = new Rectangle(this.x, this.y, WIDTH, HEIGHT);
-        Rectangle r2 = new Rectangle(enemyTank.getX(), enemyTank.getY(), Tank.WIDTH, Tank.HEIGHT);
-        if (r1.intersects(r2)){
-            int explodeX = enemyTank.getX() + Tank.WIDTH/2 - Explode.WIDTH/2;
-            int explodeY = enemyTank.getY() + Tank.HEIGHT/2 - Explode.HEIGHT/2;
-//            tankFrame.explodes.add(new Explode(explodeX, explodeY,tankFrame));
-            gm.getGameObjects().add(RectFactory.getInstance().createExplode(explodeX,explodeY,gm));
-            this.die();
-            enemyTank.die();
-        }
+    @Override
+    public void compareCollide(Object o1, Object o2) {
+
     }
 
-    private void die() {
+    public void die() {
         this.live = false;
     }
 
@@ -124,4 +130,9 @@ public class Bullet extends GameObject{
     public void setGroup(GroupEnum group) {
         this.group = group;
     }
+
+    public GameModel getGm() {
+        return gm;
+    }
+
 }
