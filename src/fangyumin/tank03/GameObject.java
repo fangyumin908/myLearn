@@ -1,6 +1,6 @@
 package fangyumin.tank03;
 
-import fangyumin.tank03.utils.Collider;
+import fangyumin.tank03.collide.Collider;
 
 import java.awt.*;
 

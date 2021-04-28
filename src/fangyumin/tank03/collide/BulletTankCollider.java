@@ -1,7 +1,8 @@
-package fangyumin.tank03.utils;
+package fangyumin.tank03.collide;
 
 import fangyumin.tank03.Bullet;
 import fangyumin.tank03.Explode;
+import fangyumin.tank03.GroupEnum;
 import fangyumin.tank03.Tank;
 import fangyumin.tank03.factory.RectFactory;
 
@@ -23,7 +24,8 @@ public class BulletTankCollider implements Collider {
     }
 
     private void collideCheck(Bullet bullet,Tank enemyTank) {
-        if (bullet.getGroup() == enemyTank.getGroup()) return;
+        if (bullet.getGroup() == GroupEnum.BAD) return;
+        if (bullet.getGroup() == GroupEnum.GOOD && enemyTank.getGroup() == GroupEnum.GOOD) return;
 
         Rectangle r1 = new Rectangle(bullet.getX(), bullet.getY(), Bullet.WIDTH, Bullet.HEIGHT);
         Rectangle r2 = new Rectangle(enemyTank.getX(), enemyTank.getY(), Tank.WIDTH, Tank.HEIGHT);

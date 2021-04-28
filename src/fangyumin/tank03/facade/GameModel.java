@@ -1,8 +1,8 @@
 package fangyumin.tank03.facade;
 
 import fangyumin.tank03.*;
-import fangyumin.tank03.strategy.FourDirectFireStrategy;
-import fangyumin.tank03.utils.BulletTankCollider;
+import fangyumin.tank03.collide.BulletTankCollider;
+import fangyumin.tank03.collide.TankTankCollider;
 import fangyumin.tank03.utils.PropertiesLoaderUtil;
 
 import java.awt.*;
@@ -16,6 +16,7 @@ import java.util.Objects;
 public class GameModel {
 
     BulletTankCollider bulletTankCollider = new BulletTankCollider();
+    TankTankCollider tankTankCollider = new TankTankCollider();
 
     Tank myTank = new Tank(200, 200, DirectionEnum.DOWN, GroupEnum.GOOD, this);
 
@@ -84,6 +85,7 @@ public class GameModel {
                 Object front =  gameObjects.get(i);
                 Object rear = gameObjects.get(j);
                 bulletTankCollider.compareCollide(front, rear);
+                tankTankCollider.compareCollide(front, rear);
             }
         }
 

@@ -9,7 +9,8 @@ import java.awt.*;
 import java.util.Random;
 
 public class Tank extends GameObject{
-    private int x,y;
+    private int x,y;  //坦克当前位置
+    private int oldX, oldY; //记录移动前坦克的位置
     private DirectionEnum direction = DirectionEnum.DOWN;
     private int ENEMIES_SPEED = Integer.parseInt(PropertiesLoaderUtil.getValue("enemyTankSpeed"));;
     private int MY_SPEED = Integer.parseInt(PropertiesLoaderUtil.getValue("myTankSpeed"));;
@@ -21,6 +22,8 @@ public class Tank extends GameObject{
     public Rectangle rectangle = new Rectangle();
     public final static int WIDTH = ResourceLoaderManager.goodTankD.getWidth();
     public final static int HEIGHT = ResourceLoaderManager.goodTankD.getHeight();
+    public final static int BAD_WIDTH = ResourceLoaderManager.badTankU.getWidth();
+    public final static int BAD_HEIGHT = ResourceLoaderManager.badTankU.getHeight();
     public Tank(int x, int y, DirectionEnum direction, GroupEnum group, GameModel gm) {
         this.x = x;
         this.y = y;
@@ -78,6 +81,10 @@ public class Tank extends GameObject{
 
     private void move(boolean moving) {
         if(!moving) return;
+        //坦克移动前的位置先记录下来
+        oldX = x;
+        oldY = y;
+
         switch (direction){
             case UP:
                 if (this.group.equals(GroupEnum.BAD)){
@@ -202,5 +209,21 @@ public class Tank extends GameObject{
 
     public void setGm(GameModel gm) {
         this.gm = gm;
+    }
+
+    public int getOldX() {
+        return oldX;
+    }
+
+    public void setOldX(int oldX) {
+        this.oldX = oldX;
+    }
+
+    public int getOldY() {
+        return oldY;
+    }
+
+    public void setOldY(int oldY) {
+        this.oldY = oldY;
     }
 }
