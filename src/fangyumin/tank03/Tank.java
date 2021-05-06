@@ -159,8 +159,8 @@ public class Tank extends GameObject{
     }
 
     @Override
-    public void compareCollide(Object o1, Object o2) {
-
+    public boolean compareCollide(Object o1, Object o2) {
+        return false;
     }
 
     public void die() {

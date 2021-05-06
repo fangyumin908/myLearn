@@ -10,13 +10,14 @@ import java.awt.*;
  */
 public class TankTankCollider implements Collider{
     @Override
-    public void compareCollide(Object o1, Object o2) {
+    public boolean compareCollide(Object o1, Object o2) {
 
         if (o1 instanceof Tank && o2 instanceof Tank){
             Tank t1 = (Tank) o1;
             Tank t2 = (Tank) o2;
             collideCheck(t1, t2);
         }
+        return false;
 
     }
 

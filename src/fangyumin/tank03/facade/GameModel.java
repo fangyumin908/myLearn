@@ -1,6 +1,7 @@
 package fangyumin.tank03.facade;
 
 import fangyumin.tank03.*;
+import fangyumin.tank03.chain.CollideChain;
 import fangyumin.tank03.collide.BulletTankCollider;
 import fangyumin.tank03.collide.TankTankCollider;
 import fangyumin.tank03.utils.PropertiesLoaderUtil;
@@ -14,9 +15,11 @@ import java.util.Objects;
  * 门面模式，与TankFrame,Tank,Bullets等游戏类交互，避免它们之间直接交互
  */
 public class GameModel {
+        //将不同碰撞检测类加进碰撞责任链
+//    BulletTankCollider bulletTankCollider = new BulletTankCollider();
+//    TankTankCollider tankTankCollider = new TankTankCollider();
 
-    BulletTankCollider bulletTankCollider = new BulletTankCollider();
-    TankTankCollider tankTankCollider = new TankTankCollider();
+    CollideChain collideChain = new CollideChain();
 
     Tank myTank = new Tank(200, 200, DirectionEnum.DOWN, GroupEnum.GOOD, this);
 
@@ -84,8 +87,9 @@ public class GameModel {
             for (int j = i + 1; j < gameObjects.size(); j++) {
                 Object front =  gameObjects.get(i);
                 Object rear = gameObjects.get(j);
-                bulletTankCollider.compareCollide(front, rear);
-                tankTankCollider.compareCollide(front, rear);
+                collideChain.collide(front, rear);
+//                bulletTankCollider.compareCollide(front, rear);
+//                tankTankCollider.compareCollide(front, rear);
             }
         }
 

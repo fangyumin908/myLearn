@@ -91,8 +91,8 @@ public class Bullet extends GameObject{
 //    }
 
     @Override
-    public void compareCollide(Object o1, Object o2) {
-
+    public boolean compareCollide(Object o1, Object o2) {
+        return true;
     }
 
     public void die() {

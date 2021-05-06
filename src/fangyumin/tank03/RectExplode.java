@@ -37,7 +37,7 @@ public class RectExplode extends BaseExplode {
 
 
     @Override
-    public void compareCollide(Object o1, Object o2) {
-
+    public boolean compareCollide(Object o1, Object o2) {
+        return false;
     }
 }
