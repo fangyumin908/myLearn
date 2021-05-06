@@ -4,18 +4,30 @@ package fangyumin.strategy;
  * @author : fangym01
  * @date : 2021-05-06 10:57
  */
-public class Cat {
+public class Dog {
     private String name;
     private double weight;
     private int age;
+    private double food;
 
-    public Cat() {
+    public Dog() {
     }
 
-    public Cat(String name, double weight, int age) {
+    public Dog(double weight) {
+        this.weight = weight;
+    }
+
+    public Dog(String name, double weight, int age) {
         this.name = name;
         this.weight = weight;
         this.age = age;
+    }
+
+    public Dog(String name, double weight, int age, double food) {
+        this.name = name;
+        this.weight = weight;
+        this.age = age;
+        this.food = food;
     }
 
     public String getName() {
@@ -42,12 +54,21 @@ public class Cat {
         this.age = age;
     }
 
+    public double getFood() {
+        return food;
+    }
+
+    public void setFood(double food) {
+        this.food = food;
+    }
+
     @Override
     public String toString() {
-        return "Cat{" +
+        return "Dog{" +
                 "name='" + name + '\'' +
                 ", weight=" + weight +
                 ", age=" + age +
+                ", food=" + food +
                 '}';
     }
 }

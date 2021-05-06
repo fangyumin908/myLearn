@@ -6,9 +6,21 @@ package fangyumin.strategy;
  */
 public class Sorter<T> {
 
-    public int sort(T o1, T o2, CompareStrategy<T> compareStrategy) {
+    public void sort(T[] ts, CompareStrategy<T> compareStrategy) {
 
-        return compareStrategy.compareField(o1, o2);
+        for (int i = 0 ; i < ts.length - 1; i++) {
+            int maxIndex = i;
+            for (int j = i + 1; j < ts.length; j++) {
+                maxIndex = compareStrategy.compareField(ts[maxIndex], ts[j]) == 1 ? maxIndex : j;
+            }
+            swap(ts, i, maxIndex);
+        }
 
+    }
+
+    private void swap(T[] ts, int i, int maxIndex) {
+        T t = ts[i];
+        ts[i] = ts[maxIndex];
+        ts[maxIndex] = t;
     }
 }
