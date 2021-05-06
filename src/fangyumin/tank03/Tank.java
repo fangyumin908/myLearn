@@ -24,6 +24,10 @@ public class Tank extends GameObject{
     public final static int HEIGHT = ResourceLoaderManager.goodTankD.getHeight();
     public final static int BAD_WIDTH = ResourceLoaderManager.badTankU.getWidth();
     public final static int BAD_HEIGHT = ResourceLoaderManager.badTankU.getHeight();
+
+    public Tank() {
+    }
+
     public Tank(int x, int y, DirectionEnum direction, GroupEnum group, GameModel gm) {
         this.x = x;
         this.y = y;
@@ -132,7 +136,7 @@ public class Tank extends GameObject{
     private void boundsCheck() {
         TankFrame tankFrame = gm.getTankFrame();
         if (this.x < 2) this.x = 2;
-        if (this.x + Tank.WIDTH > tankFrame.getWidth() - 2) this.x = tankFrame.getWidth() - Tank.WIDTH;
+        if (this.x + Tank.WIDTH > tankFrame.getWidth() - 2) this.x = tankFrame.getWidth() - Tank.WIDTH - 2;
         if (this.y < 30) this.y = 30;
         if (this.y + Tank.HEIGHT > tankFrame.getHeight()) this.y = tankFrame.getHeight() - Tank.HEIGHT;
     }

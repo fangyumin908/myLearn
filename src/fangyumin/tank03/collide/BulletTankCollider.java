@@ -4,6 +4,7 @@ import fangyumin.tank03.Bullet;
 import fangyumin.tank03.Explode;
 import fangyumin.tank03.GroupEnum;
 import fangyumin.tank03.Tank;
+import fangyumin.tank03.factory.NormalFactory;
 import fangyumin.tank03.factory.RectFactory;
 
 import java.awt.*;
@@ -33,7 +34,7 @@ public class BulletTankCollider implements Collider {
             int explodeX = enemyTank.getX() + Tank.WIDTH/2 - Explode.WIDTH/2;
             int explodeY = enemyTank.getY() + Tank.HEIGHT/2 - Explode.HEIGHT/2;
 
-            bullet.getGm().getGameObjects().add(RectFactory.getInstance().createExplode(explodeX,explodeY,bullet.getGm()));
+            bullet.getGm().getGameObjects().add(NormalFactory.getInstance().createExplode(explodeX,explodeY,bullet.getGm()));
             bullet.die();
             enemyTank.die();
         }
