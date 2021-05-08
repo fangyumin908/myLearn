@@ -38,6 +38,11 @@ public class GameModel {
         for (int i = 0; i < enemiesCount; i++) {
             gameObjects.add(new Tank(i * 100, 100, DirectionEnum.DOWN, GroupEnum.BAD, this));
         }
+        //添加墙体
+        gameObjects.add(new Wall(250,180,300,60,this));
+        gameObjects.add(new Wall(750,180,300,60,this));
+        gameObjects.add(new Wall(350,330,60,280,this));
+        gameObjects.add(new Wall(850,330,60,280,this));
 
     }
 
@@ -74,8 +79,6 @@ public class GameModel {
 //        g.drawString("爆炸数量 ： " + explodes.size(), 10 , 90);
         g.setColor(c);
 
-
-
 //        myTank.paint(g);
 //        explode.paint(g);
         for (int i = 0; i < gameObjects.size();i++){
@@ -87,7 +90,7 @@ public class GameModel {
             for (int j = i + 1; j < gameObjects.size(); j++) {
                 Object front =  gameObjects.get(i);
                 Object rear = gameObjects.get(j);
-                collideChain.collide(front, rear);
+                collideChain.compareCollide(front, rear);
 //                bulletTankCollider.compareCollide(front, rear);
 //                tankTankCollider.compareCollide(front, rear);
             }

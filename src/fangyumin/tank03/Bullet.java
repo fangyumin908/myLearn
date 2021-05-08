@@ -90,11 +90,6 @@ public class Bullet extends GameObject{
 //        }
 //    }
 
-    @Override
-    public boolean compareCollide(Object o1, Object o2) {
-        return true;
-    }
-
     public void die() {
         this.live = false;
     }

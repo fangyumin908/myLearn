@@ -33,8 +33,4 @@ public class Explode extends BaseExplode {
         gm.getGameObjects().remove(this);
     }
 
-    @Override
-    public boolean compareCollide(Object o1, Object o2) {
-        return false;
-    }
 }
